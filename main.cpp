@@ -1,38 +1,45 @@
 #include <iostream>
+#include <fstream>
+#include <string>
 #include "date.h"
 #include "address.h"
 #include "student.h"
 
-void testAddress();
-void testDate();
-void testStudent();
+const int MAX_STUDENTS = 50; // Maximum number of students to read
 
 int main(){
-  std::cout << "Hello!" << std::endl;
-  testAddress();
-  testDate();
-  testStudent();
+  
+  // Open file
+  std::ifstream inFile("students.csv");
+  if (!inFile) {
+    std::cerr << "Error opening file!" << std::endl;
+    return 1;
+  }
+
+  // Create array of 50 students
+  Student* students = new Student[MAX_STUDENTS];
+
+  int counter = 0;
+  std::string item;
+
+  // Read file line by line and process each student's data
+  while (getline(inFile, item) && counter < MAX_STUDENTS) {
+    students[counter].init(item); // Initialize student with data from CSV line
+    counter++;
+  }
+
+  // Close the file after reading
+  inFile.close();
+
+  // Output student information
+  for (int i = 0; i < counter; ++i) {
+    students[i].printStudent();  // Print student data
+    std::cout << std::endl;
+    std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+  }
+
+  // Clean up dynamically allocated memory
+  delete[] students;
+
   return 0;
 } // end main
-
-void testAddress(){
-  Address a;
-  a.init("123 W Main St", "Muncie", "IN", "47303");
-  a.printAddress();
-} // end testAddress
-
-void testDate(){
- Date d;
- d.init("01/27/1997");
- d.printDate();
-} // end testDate
-
-void testStudent(){
-  std::string studentString = "Danielle,Johnson,32181 Johnson Course Apt. 389,New Jamesside,IN,59379,02/17/2004,05/15/2027,65";
-  Student* student = new Student();
-  student->init(studentString);
-  student->printStudent();
-  std::cout << std::endl;
-  std::cout << student->getlastFirst();
-  delete student;
-} // end testStudent

@@ -5,28 +5,26 @@
 #include "address.h"
 #include "date.h"
 
+class Student {
+private:
+    std::string firstName;
+    std::string lastName;
+    Date* dob;            // Date of birth
+    Date* expectedGrad;   // Expected graduation date
+    Address* address;
+    int creditHours;
 
-class Student
-{
-	protected:
-		std::string studentString;
-		std::string firstName;
-		std::string lastName;
-		Date* dob;
-		Date* expectedGrad;
-		Address* address;
-		int creditHours;
+public:
+    Student();   // Constructor
+    ~Student();  // Destructor
 
-	public:
-		Student();
-		Student(std::string studentString);
-		~Student();
-		void init(std::string studentString);
-		void printStudent();
-		std::string getlastFirst();
-		std::string getlastName();
-		int getcreditHours();
-};//end class def
+    void init(std::string string);  // Method to initialize student data from a string
+    void printStudent();           // Method to print student data
+
+    std::string getLastFirst();    // Get name in "Last, First" format
+    std::string getFirstName();   // Get first name
+    std::string getLastName();    // Get last name
+    int getCreditHours();         // Get credit hours
+};
 
 #endif
-
