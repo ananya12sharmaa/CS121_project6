@@ -3,11 +3,11 @@
 #include "date.h"
 
 Date::Date() 
-{
+{//begins with initialization
 	month = 1;
 	day = 1;
 	year = 1970;
-}
+}//ends
 
 Date::Date(std::string dateString) 
 {
@@ -23,17 +23,17 @@ void Date::init(std::string dateString)
 	getline(ss, sDay, '/');
 	getline(ss, sYear, '/');
 
-	ss.clear();
+	ss.clear();//to clear error flgs?
 
-    // Convert the extracted strings to integers
 	std::stringstream ssMonth(sMonth), ssDay(sDay), ssYear(sYear);
     
 	ssMonth >> month;
 	ssDay >> day;
 	ssYear >> year;
-}
+}//ends
 
 void Date::printDate()
 {
+	//output 
 	std::cout << "Date: " << month << "/" << day << "/" << year << std::endl;
 }

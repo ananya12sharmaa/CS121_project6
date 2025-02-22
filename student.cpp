@@ -4,31 +4,33 @@
 #include "date.h"
 #include "address.h"
 
-Student::Student() {
+Student::Student() 
+{
     firstName = "none";
     lastName = "none";
     dob = new Date();
     expectedGrad = new Date();
     address = new Address();
     creditHours = -1;
-}
+}//constructor ends
 
-Student::~Student() {
+Student::~Student() 
+{
     delete dob;
     delete expectedGrad;
     delete address;
-}
+}//preventing errors
 
-void Student::init(std::string string) {
+void Student::init(std::string string) 
+{
     std::stringstream ss;
-    ss.clear();
+    ss.clear();//preventing errors
     ss.str(string);  // Use the parameter directly
 
-    // Get first and last name for student
+    // here we are getting first and last name for student
     getline(ss, firstName, ',');
     getline(ss, lastName, ',');
 
-    // Get address strings
     std::string street;
     std::string city;
     std::string state;
@@ -43,49 +45,53 @@ void Student::init(std::string string) {
 
     // Get dates
     std::string sdob;
-    std::string sexpectedGrad;
+    std::string s_expectedGrad;
 
     getline(ss, sdob, ',');
-    getline(ss, sexpectedGrad, ',');
+    getline(ss, s_expectedGrad, ',');
 
-    dob->init(sdob);      // Initialize birthday (using dob, not birthday)
-    expectedGrad->init(sexpectedGrad);  // Initialize graduation date (using expectedGrad, not graduation)
+    dob->init(sdob);      // Initializing dob
+    expectedGrad->init(s_expectedGrad);  // Initializing grad date
 
-    // Get credit hours
+    // Getting the   credit hours
     std::string sCreditHours;
     getline(ss, sCreditHours);
 
     ss.clear();
     ss.str("");
 
-    // Convert credit hours to an integer
     ss << sCreditHours;
     ss >> creditHours;
 }
 
-void Student::printStudent() {
+void Student::printStudent() 
+{
     std::cout << "Name: " << firstName << " " << lastName << std::endl;
-    address->printAddress();   // Assuming address->printAddress() exists
-    dob->printDate();          // Assuming dob->printDate() exists
-    expectedGrad->printDate(); // Assuming expectedGrad->printDate() exists
+    address->printAddress();   
+    dob->printDate();          
+    expectedGrad->printDate(); 
     std::cout << "Credit Hours: " << creditHours << std::endl;
 }
 
-std::string Student::getLastFirst() {
+std::string Student::getLastFirst() 
+{
     std::stringstream ss;
     ss.clear();
     ss << lastName << ", " << firstName;
     return ss.str();
 }
 
-std::string Student::getFirstName() {
+std::string Student::getFirstName() 
+{
     return firstName;
 }
 
-std::string Student::getLastName() {
+std::string Student::getLastName() 
+{
     return lastName;
 }
 
-int Student::getCreditHours() {
+int Student::getCreditHours() 
+{
     return creditHours;
-}
+}//endssszz
