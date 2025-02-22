@@ -5,8 +5,9 @@
 #include <string>
 
 class Address 
-{
-	private:
+{//defining class
+	//limited inherited access
+	protected:
     		std::string street;
     		std::string city;
     		std::string state;
@@ -17,6 +18,6 @@ class Address
     		Address(std::string street, std::string city, std::string state, std::string zip);
    		void init(std::string street, std::string city, std::string state, std::string zip);
     		void printAddress();
-};//ends
+};//ending class def
 
 #endif

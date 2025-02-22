@@ -6,7 +6,8 @@
 #include <sstream>
 
 class Date 
-{
+{//defining class
+	//limited inherited access only
 	protected:
 		std::string date;
 		int month;
@@ -17,6 +18,6 @@ class Date
 		Date(std::string dateString);
 		void init(std::string dateString);
 		void printDate();
-};//ends
+};//ending class def
 
 #endif
