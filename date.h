@@ -7,7 +7,8 @@
 
 class Date 
 {
-	private:
+	protected:
+		std::string date;
 		int month;
 		int day;
 		int year;
